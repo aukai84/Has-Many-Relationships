@@ -17,3 +17,19 @@ SELECT posts.*, users.username
 -- 5
 SELECT username FROM users WHERE created_at > '01/01/2015';
 -- 6
+SELECT posts.title, posts.content, users.username
+  FROM users
+  INNER JOIN posts
+  ON posts.users_id = users.id
+  WHERE users.created_at < '01/01/2015';
+-- 7
+SELECT comments.*, posts.title AS post_title
+  FROM posts
+  INNER JOIN comments
+  ON comments.posts_id = posts.id;
+-- 8
+SELECT comments.*, posts.title AS post_title, posts.url AS post_url, comments.body AS comment_body
+  FROM posts
+  INNER JOIN comments
+  ON comments.posts_id = posts.id
+  WHERE posts.created_at < '01/01/2015';
